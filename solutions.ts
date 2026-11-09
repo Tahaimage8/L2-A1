@@ -33,23 +33,30 @@ function formatCoordinate(coordinate: readonly [number, number, string]): string
 }
 
 function concatenateArrays<T>(...arrays: T[][]): T[] {
-  let combinedArray: T[] = [];
-  for (const arr of arrays) {
-    for (const item of arr) {
-      combinedArray.push(item);
+    let combinedArray: T[] = [];
+    for (const arr of arrays) {
+        for (const item of arr) {
+            combinedArray.push(item);
+        }
     }
-  }
-  return combinedArray;
+    return combinedArray;
 }
 
 interface Course {
-  title: string;
-  students: number;
-  isPublished: boolean;
+    title: string;
+    students: number;
+    isPublished: boolean;
 }
 
 function getPopularCourses(courses: Course[], minStudents: number): Course[] {
-  return courses.filter((course) => {
-    return course.isPublished === true && course.students >= minStudents;
-  });
+    return courses.filter((course) => {
+        return course.isPublished === true && course.students >= minStudents;
+    });
+}
+function pluckValues<T, K extends keyof T>(items: T[], key: K): T[K][] {
+    let result: T[K][] = [];
+    for (const item of items) {
+        result.push(item[key]);
+    }
+    return result;
 }
