@@ -31,3 +31,13 @@ function formatCoordinate(coordinate: readonly [number, number, string]): string
     const locationName = coordinate[2];
     return `Location: ${locationName} (${latitude}, ${longitude})`;
 }
+
+function concatenateArrays<T>(...arrays: T[][]): T[] {
+  let combinedArray: T[] = [];
+  for (const arr of arrays) {
+    for (const item of arr) {
+      combinedArray.push(item);
+    }
+  }
+  return combinedArray;
+}
